@@ -9,7 +9,7 @@ const FONT_WEIGHTS = {
 
 const renderText = (text, className, baseWeight = 400) => {
     return [...text].map((char, i) => (
-        <span key={i} className={className} style={{fontVariationSettings: `'wght ${baseWeight}`}}
+        <span key={i} className={className} style={{fontVariationSettings: `'wght' ${baseWeight}`}} 
         >
             {char === ' ' ? '\u00A0' : char}
         </span>
@@ -17,13 +17,13 @@ const renderText = (text, className, baseWeight = 400) => {
 };
 
 const setupTextHover = (container, type) => {
-    if (!container) return;
+    if (!container) return () => {};
 
     const letters = container.querySelectorAll('span');
     const { min, max, default: base } = FONT_WEIGHTS[type];
 
     const animateLetter = (letter, weight, duration = 0.25) => {
-        return gsap.to(letter, {duration, ease: 'power2.out', fontVariationSettings: `'wght ${weight}`});
+        return gsap.to(letter, {duration, ease: 'power2.out', fontVariationSettings: `'wght' ${weight}`});
     }
 
     const handleMouseEnter = (e) => {
@@ -78,7 +78,7 @@ const Welcome = () => {
         </h1>
 
         <div className='small-screen'>
-            <p>This Portfolio is designed for dektop/tabled screens only.</p>
+            <p>This Portfolio is designed for dektop/tablet screens only.</p>
         </div>
     </section>
   )
